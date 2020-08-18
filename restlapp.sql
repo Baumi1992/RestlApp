@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 18. Aug 2020 um 10:35
--- Server-Version: 10.4.13-MariaDB
--- PHP-Version: 7.4.8
+-- Erstellungszeit: 18. Aug 2020 um 21:15
+-- Server-Version: 10.4.11-MariaDB
+-- PHP-Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -105,13 +105,21 @@ CREATE TABLE `recipe_ingredient` (
 
 CREATE TABLE `webuser` (
   `webuserID` int(10) NOT NULL,
-  `firstName` varchar(100) NOT NULL,
-  `lastName` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `webuserImageURL` varchar(100) NOT NULL,
-  `ingredientList` text NOT NULL
+  `webuserImageURL` varchar(100) DEFAULT NULL,
+  `ingredientList` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `webuser`
+--
+
+INSERT INTO `webuser` (`webuserID`, `username`, `password`, `email`, `webuserImageURL`, `ingredientList`) VALUES
+(1, 'Baumi', '202cb962ac59075b964b07152d234b70', 'baumgartner17@gmail.com', NULL, NULL),
+(2, 'Liane', '827ccb0eea8a706c4c34a16891f84e7b', 'liane.glaser@gmx.at', NULL, NULL),
+(10, 'Baumiiii', '202cb962ac59075b964b07152d234b70', 'baumi', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -180,7 +188,7 @@ ALTER TABLE `recipe`
 -- AUTO_INCREMENT für Tabelle `webuser`
 --
 ALTER TABLE `webuser`
-  MODIFY `webuserID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `webuserID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints der exportierten Tabellen
