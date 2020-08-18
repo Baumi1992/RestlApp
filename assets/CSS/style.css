@@ -1,0 +1,424 @@
+/* Popup container */
+.modal {
+  width: 80%;
+  opacity: 0;
+  padding: 50px;
+  position: absolute;
+  z-index: 1100;
+  -webkit-transition: opacity 600ms linear 600ms;
+  -moz-transition: opacity 600ms linear 600ms;
+  -ms-transition: opacity 600ms linear 600ms;
+  -o-transition: opacity 600ms linear 600ms;
+  transition: opacity 600ms linear 600ms;
+}
+.modal_info {
+  background: #fcfcfc;
+  padding: 50px 50px;
+  text-align: center;
+  height: 800px;
+}
+.modal_overlay {
+  background: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  visibility: hidden;
+  z-index: 900;
+  -webkit-transition: opacity 200ms linear;
+  -moz-transition: opacity 200ms linear;
+  -ms-transition: opacity 200ms linear;
+  -o-transition: opacity 200ms linear;
+  transition: opacity 200ms linear;
+}
+.display {
+  opacity: 1;
+  visibility: visible;
+}
+.conceal {
+  visibility: visible;
+}
+.btn_container {
+  height: 100%;
+  text-align: center;
+}
+.btn_container:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  width: 0;
+}
+.open_button {
+  border-radius: 15px;
+  font-size: 4rem;
+  color: white ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35%;
+  background-color: rgba(30, 178, 236, 0.877);
+  height: 5vh;
+  padding: 3px;
+  margin: 2vh;
+  display: inline-block;
+  height: 66px;
+  position: relative;
+  vertical-align: middle;
+  whitespace: normal;
+  width: 172px;
+  z-index: 1000;
+  -webkit-transition: opacity 100ms linear;
+  -moz-transition: opacity 100ms linear;
+  -ms-transition: opacity 100ms linear;
+  -o-transition: opacity 100ms linear;
+  transition: opacity 100ms linear;
+}
+a.open_button {
+  color: #FFFFFF;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+a.open_button:hover {
+  background: #3E465A;
+}
+a.open_button.load {
+  opacity: 0;
+}
+button.modal_close {
+  background: #363D4E;
+  border: none;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  color: #FFFFFF;
+  cursor: pointer;
+  outline: none;
+  width: 52px;
+  height: 52px;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  -webkit-transition: -webkit-transform 600ms;
+  -moz-transition: -moz-transform 600ms;
+  -ms-transition: -ms-transform 600ms;
+  -o-transition: -o-transform 600ms;
+  transition: transform 600ms;
+}
+button.modal_close:hover {
+  background: #3E465A;
+  -webkit-transform: rotate(360deg) scale(1.1);
+  -moz-transform: rotate(360deg) scale(1.1);
+  -ms-transform: rotate(360deg) scale(1.1);
+  -o-transform: rotate(360deg) scale(1.1);
+  transform: rotate(360deg) scale(1.1);
+  -webkit-transition: -webkit-transform 600ms;
+  -moz-transition: -moz-transform 600ms;
+  -ms-transition: -ms-transform 600ms;
+  -o-transition: -o-transform 600ms;
+  transition: transform 600ms;
+}
+button.modal_close span,
+span:before,
+span:after {
+  background: #FFFFFF;
+  content: '';
+  cursor: pointer;
+  display: block;
+  height: 2px;
+  position: absolute;
+  width: 20px;
+}
+button.modal_close span:first-child {
+  background: none;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+button.modal_close span:before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+button.modal_close span:after {
+  -webkit-transform: translateY(-2px) rotate(-45deg);
+  -moz-transform: translateY(-2px) rotate(-45deg);
+  -ms-transform: translateY(-2px) rotate(-45deg);
+  -o-transform: translateY(-2px) rotate(-45deg);
+  transform: translateY(-2px) rotate(-45deg);
+  top: 2px;
+}
+.indexH1 {
+  margin-top: 20vh;
+}
+.footerNav {
+  display: flex;
+  flex-direction: column-reverse;
+  font-size: 2rem;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+main > div.active {
+  display: flex;
+}
+main > div {
+  display: none;
+}
+.footerNav.active {
+  color: #fc4c4c;
+}
+.footerNav::before {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  height: 4vh;
+  width: 10vw;
+}
+.active::before {
+  color: #fc4c4c;
+}
+#ingredientList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+.ingredient {
+  font-size: 1.75rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 8.75vh;
+  height: 8.75vh;
+  background-color: #195e83;
+  border-radius: 10px;
+  margin: 5px 5px;
+  padding: 0px;
+}
+.itemImage {
+  margin-bottom: 10px;
+  height: 5.5vh;
+  width: 65%;
+}
+.selected {
+  font-size: 1.75rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 8.75vh;
+  height: 8.75vh;
+  background-color: #fc4c4c;
+  border-radius: 10px;
+  margin: 5px 5px;
+  padding: 0px;
+}
+#selectedIngredientList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-height: 19vh;
+  min-height: 19vh;
+  overflow-y: scroll;
+  border-bottom: 3px solid black;
+}
+#selectedIngredientList > div {
+  height: 10vh;
+}
+#ingredientSearch {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  height: 5vh;
+  width: 100%;
+  border: 2px solid black;
+  padding-left: 20px;
+}
+#ingredientSearch::placeholder {
+  color: #ec2c0a;
+}
+.input-container {
+  display: flex;
+  flex-direction: row ;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+.icon {
+  font-size: 3rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #fc4c4c;
+  height: 5vh;
+  min-width: 50px;
+  text-align: center;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-left: 2px solid black;
+}
+.button {
+  border-radius: 15px;
+  font-size: 4rem;
+  color: white ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  background-color: rgba(30, 178, 236, 0.877);
+  height: 5vh;
+  padding: 3px;
+  margin: 2vh;
+}
+.modal_info .buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fas fa-search {
+  color: white;
+  font-size: 3rem;
+}
+#myIngredientContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+.myIngredientList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.myIngredient {
+  font-size: 1.75rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 10vh;
+  height: 4vh;
+  background-color: #448fb8;
+  border-radius: 10px;
+  margin: 5px 5px;
+  padding: 0px;
+}
+.popup {
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  left: 0%;
+  top: 0%;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 500ms;
+  -moz-transition: all 500ms;
+  transition: all 500ms;
+}
+.popup:target {
+  opacity: 0.99;
+  pointer-events: auto;
+}
+.popup > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  padding: 2rem;
+  background-color: #4b4646;
+  color: #444;
+  height: 100vh;
+  left: 0%;
+  top: 0vh;
+  overflow: hidden;
+}
+.popup header {
+  font-weight: bold;
+}
+.popup_close {
+  color: #ffffff;
+  line-height: 60px;
+  font-size: 4rem;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 60px;
+  text-decoration: none;
+  z-index: 3000;
+}
+.registerForm {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+}
+#loginForm,
+#signupForm {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#testDiv {
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  left: 0%;
+  top: 0%;
+  -webkit-transition: all 500ms;
+  -moz-transition: all 500ms;
+  transition: all 2s ease-in-out 2s;
+}
+#testDiv > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  padding: 2rem;
+  background-color: #4b4646;
+  color: #ffffff;
+  height: 100vh;
+  left: 0%;
+  top: 0vh;
+  overflow: hidden;
+  transition: all 2s ease-in-out 2s;
+}

@@ -1,0 +1,138 @@
+ // out: ../CSS/main.css, compress: false, sourceMap: false
+
+@mainfont: 'Roboto', sans-serif;
+@maincolor: #000;
+@buttoncolor: rgba(0, 0, 0,0.8);
+@buttonhover: rgb(255, 144, 0);
+
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+  font-size: 17px;
+}
+
+html{
+  font-family: @mainfont;
+  font-size: 12px;
+  color: black;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+main{
+  height: 82vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#ingredientMain{
+  height: 82vh;
+  background-color: rgb(75, 70, 70);
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#indexMain{
+height: 100vh;
+background-color: rgb(255, 255, 255);
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+width: 100%;
+}
+
+header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: rgb(44, 44, 44);
+  height: 10vh;
+  .col-12{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+} 
+
+header img{
+  height: 8vh;
+}
+
+footer{
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  background-color: rgb(44, 44, 44);
+  height: 8vh;
+  padding: 0px 30px;
+  .col-12{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+h1{
+  font-size: 5rem;
+  margin: 0vh 2vh 0vh 3vh;
+}
+
+h2{
+  font-size: 4rem;
+  color: rgb(26, 105, 23);
+  margin: 0vh 2vh 5vh 3vh;
+ 
+}
+
+h3{
+  font-size: 3rem;
+  color: rgb(26, 105, 23);
+  margin: 0px 0px 10px 20px;
+}
+
+.bxslider > img{
+  
+  height: 45vh;
+  width: 40%;
+  padding-left: 30px;
+  padding-right: 30px;
+
+}
+
+input{
+  
+  text-align: center;
+  font-family: @mainfont;
+  font-size: 2.25rem;
+  width: 100%;
+  height: 4vh;
+  margin: 1vh 0vh;
+  border: 2px solid black;
+
+  &::placeholder{
+    color: rgba(30, 178, 236, 0.877);
+    
+    
+  }
+}
+
+input[type=submit]{
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(37, 37, 37);
+  text-align: center;
+  font-family: @mainfont;
+  font-size: 2.25rem;
+  width: 35%;
+  height: 5vh;
+  margin: 1vh 0vh;
+  border: 2px solid black;
+}
+

@@ -1,0 +1,67 @@
+[
+{
+    "ingredientID" : "1",
+    "name" : "Apfel",
+    "iconURL" : "apfel.png"   
+},
+
+{
+    "ingredientID" : "2",
+    "name" : "Birne",
+    "iconURL" : "birne.png"   
+},
+
+{
+    "ingredientID" : "3",
+    "name" : "Kirsche",
+    "iconURL" : "kirsche.png"  
+},
+{
+    "ingredientID" : "4",
+    "name" : "Mango",
+    "iconURL" : "mango.png"  
+},
+{
+    "ingredientID" : "5",
+    "name" : "Tomate",
+    "iconURL" : "tomate.png"  
+},
+{
+    "ingredientID" : "6",
+    "name" : "Zitrone",
+    "iconURL" : "zitrone.png"  
+},
+{
+    "ingredientID" : "7",
+    "name" : "Erdbeere",
+    "iconURL" : "erdbeere.png"  
+},
+{
+    "ingredientID" : "8",
+    "name" : "Knoblauch",
+    "iconURL" : "knoblauch.png"  
+},
+{
+    "ingredientID" : "9",
+    "name" : "Kartoffel",
+    "iconURL" : "kartoffel.png"  
+},
+{
+    "ingredientID" : "10",
+    "name" : "Banane",
+    "iconURL" : "banane.png"  
+},
+{
+    "ingredientID" : "11",
+    "name" : "Karotte",
+    "iconURL" : "karotte.png"  
+},
+{
+    "ingredientID" : "12",
+    "name" : "Zwiebel",
+    "iconURL" : "zwiebel.png"  
+}
+
+
+
+]

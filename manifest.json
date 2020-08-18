@@ -1,0 +1,21 @@
+{
+    "short_name": "RApp",
+    "name": "Reste App",
+    "display": "standalone",
+    "lang":"de_DE",
+    "icons": [
+      {
+        "src": "assets/IMAGES/restlApp-200x200.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "assets/IMAGES/restlApp-200x200.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "index.html",
+    "theme_color": "#000000",
+    "background_color": "#525d65"
+  }
