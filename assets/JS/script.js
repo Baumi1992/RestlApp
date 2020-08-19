@@ -33,7 +33,7 @@ $(document).ready(function () {
 
 
     $('#loader').load( "loader.html");
-
+    searchingIngredient();
     setTimeout(function(){
     console.log('TEST');
     $('#popUp').css('display', 'flex');
@@ -181,14 +181,16 @@ $(document).ready(function () {
             url: 'authentication.php',
             success: function(data) {
 
-                userJSON = JSON.parse(data);
-                console.debug(userJSON);
-                currentUser = userJSON[0];
-                console.log(currentUser.username);
+                
                 
                 if(data['username'] !== ""){
                     $('#failed_login').text(""); 
                     console.log(data);
+
+                    userJSON = JSON.parse(data);
+                    console.debug(userJSON);
+                    currentUser = userJSON[0];
+                    console.log(currentUser.username);
                     
                     $('#ingredientMain').load("ingredient.html", function() {
                         $('header, footer').css('display', 'flex');
@@ -200,7 +202,7 @@ $(document).ready(function () {
 
                     // currentUser = userJSON[0];
                     // console.log(currentUser);
-                }else{
+                }else if(data  == ""){
                     $('#failed_login').append("<p>USERNAME ODER PASSWORT STIMMT NICHT!</p>");
                     $('#loginFormButton').append('<input type="submit" id="forgotten_password" value="Passwort vergessen">');  
                 }
@@ -209,7 +211,8 @@ $(document).ready(function () {
             },
             error: function(error) {
                 console.log(error);
-                         
+                $('#failed_login').append("<p>USERNAME ODER PASSWORT STIMMT NICHT!</p>");
+                $('#loginFormButton').append('<input type="submit" id="forgotten_password" value="Passwort vergessen">');  
             }
         });
     });
@@ -267,7 +270,8 @@ $(document).ready(function () {
     
     function searchingIngredient(){
         
-        $('#ingredientSearch').keyup(function(){
+        $('html').on("keyup", "#ingredientSearch", function() {
+        
         // console.log('TEST');
         let inputValue = $(this).val().toLowerCase();
         

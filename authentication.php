@@ -3,7 +3,7 @@ $username = $_POST['username'];
 $email = $_POST['email'];
 $password = md5($_POST['password']);
 $login = $_POST['login'];
-
+$check = "";
 $connection = mysqli_connect("localhost", "root", "", "restlapp");
 
 
@@ -24,12 +24,19 @@ if(strcmp($login, 'false') === 0 && $num_rows == 0){
 if ($num_rows > 0) {
     while($row = mysqli_fetch_assoc($result)){   
         $userData[] = $row;
+        echo json_encode($userData);
     }
 } elseif($successfullyRegistered){
     $userData[] = array($username);
+    echo json_encode($userData);
 }
 
-echo json_encode($userData);
+if($num_rows == 0){
+    $userData[] = $check; 
+    echo json_encode($userData);
+}
+
+
 
 mysqli_close($connection);
 
