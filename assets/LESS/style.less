@@ -323,7 +323,7 @@ main > div{
   padding: 10px;
   background-color: rgb(252, 76, 76);
   height: 5vh;
-  min-width: 50px;
+  min-width: 80px;
   text-align: center;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
@@ -374,9 +374,6 @@ main > div{
   align-items: center;
 }
 
-
-
-
 .myIngredient{
   font-size: 1.75rem;
   color: white;
@@ -391,64 +388,6 @@ main > div{
   margin: 5px 5px;
   padding: 0px;
 }
-
-
-.popup{
-    
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position:absolute;
-  width:100%;
-  height: 100vh;
-  left:0%;
-  top:0%;
-  opacity: 0;
-  pointer-events: none;
-  -webkit-transition: all 500ms;
-  -moz-transition: all 500ms;
-  transition: all 500ms;  
-}
-
-.popup:target {
-opacity: 0.99;
-pointer-events: auto;
-}
-
-.popup > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  position: relative;
-  padding: 2rem;
-  background-color: rgb(75, 70, 70);
-  color: #444;
-  height: 100vh;
-  left: 0%;
-  top: 0vh;
-  overflow: hidden;
-}
-
-.popup header {
-font-weight: bold;
-}
-
-.popup_close {
-color: rgb(255, 255, 255);
-line-height: 60px;
-font-size: 4rem;
-position: absolute;
-right: 0;
-text-align: center;
-top: 0;
-width: 60px;
-text-decoration: none;
-z-index: 3000;
-}
-
 
 .registerForm{
   display: flex;
@@ -467,7 +406,7 @@ z-index: 3000;
 }
 
 
-#testDiv{
+#popUp{
   z-index: 999;
   display: none;
   align-items: center;
@@ -483,7 +422,7 @@ z-index: 3000;
   transition: all 2s ease-in-out 2s;
 }
 
-#testDiv > div {
+#popUp > div {
   display: flex;
   flex-direction: column;
   justify-content: center;

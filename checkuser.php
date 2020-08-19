@@ -1,7 +1,7 @@
 <?php
 
-    $connection = mysqli_connect("localhost", "root", "", "notebook");
-    $select = "SELECT user_name FROM users";
+    $connection = mysqli_connect("localhost", "root", "", "restlapp");
+    $select = "SELECT email FROM webuser";
     $result = mysqli_query($connection, $select);
 
     $num_rows = mysqli_num_rows($result);
@@ -12,7 +12,7 @@
 
         while($rows = mysqli_fetch_assoc($result)){  
            
-            if($rows['user_name'] == $_POST['username']){
+            if($rows['email'] == $_POST['email']){
                 echo 'true';
                 $checkuser = 'true';
                 break;

@@ -15,7 +15,7 @@ const FILES_TO_CACHE = [
 ];
 
 self.addEventListener('install', async event => {
-    console.log('[ServiceWorker] Install');
+    // console.log('[ServiceWorker] Install');
     
     const cache = await caches.open('resteApp-static');
     cache.addAll(staticAssets);
@@ -32,7 +32,7 @@ self.addEventListener('install', async event => {
 });
 
 self.addEventListener('fetch', event => {
-    console.log('[ServiceWorker] Fetch', event.request.url);
+    // console.log('[ServiceWorker] Fetch', event.request.url);
     const req = event.request;
     const url = new URL(req.url);
     

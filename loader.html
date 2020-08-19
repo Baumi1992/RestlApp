@@ -1,0 +1,55 @@
+<div class="indexMain">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="indexH1">Jedes 8. Lebensmittel, </br> das wir kaufen werfen wir weg!</h1>
+                <h2 class="index">Du kannst das ändern :)</h2>
+                <div class="bxslider">
+                    <img src="assets/IMAGES/apple.png">
+                    <img src="assets/IMAGES/bread.png">
+                    <img src="assets/IMAGES/cheese.PNG">
+                </div>
+                <!-- <a id="popupButton" href="#popUp">HH</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div id="popUp">
+    <div>
+        <div class="row ">  
+            <div class="col-12 registerForm">
+                <div class="button" id="loginButton">Login</div>
+                <div class="button" id="signUpButton">Signup</div>
+            </div>
+        </div>
+        <form id="signupForm" style="display: none;">
+            <input type="email" id="signupEmail" placeholder="E-Mail Adresse" required></input></br>
+            <div id="userTaken"></div>
+            <input type="password" id="signupPassword" placeholder="Passwort" required></input></br>
+            <input type="password" id="signupPassword2" placeholder="Passwort wiederholen" required></input></br>
+            <div id="password"></div>
+            <input type="text" id="userName" placeholder="Benutzername" required></input>
+            <input type="submit" id="signUp" value="Registrieren" disabled="true"> 
+        </form>
+        <h2 id="failed_signup"></h2>
+        <form id="loginForm">
+            <input type="email" id="loginEmail" placeholder="E-Mail Adresse" required></input></br>
+            <input type="password" id="loginPassword" placeholder="Passwort" required></input></br>
+            <input type="submit" id="login" value="Einloggen">
+        </form>
+        <h2 id="failed_login"></h2>
+    </div>
+</div>  
+<script type="text/javascript">
+    $('header, footer').hide();
+    $('.bxslider').bxSlider({
+        speed: 300,
+        auto: true,
+        autoControls: false,
+        pager: false,
+        controls: false,
+        mode: 'fade',
+        infiniteLoop:  true,
+        
+    });
+</script>            
