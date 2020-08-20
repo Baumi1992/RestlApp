@@ -17,7 +17,8 @@ main {
   justify-content: center;
   align-items: center;
 }
-#ingredientMain {
+#ingredientMain,
+#recipeMain {
   height: 82vh;
   background-color: #4b4646;
   flex-direction: column;
@@ -81,6 +82,7 @@ h3 {
 p {
   font-size: 3rem;
   color: #ff0000;
+  width: 100%;
 }
 .bxslider > img {
   height: 45vh;

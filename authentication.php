@@ -32,8 +32,7 @@ if ($num_rows > 0) {
 }
 
 if($num_rows == 0){
-    $userData[] = $check; 
-    echo json_encode($userData);
+    echo 0;
 }
 
 
