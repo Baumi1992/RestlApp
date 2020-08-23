@@ -21,19 +21,22 @@ if(strcmp($login, 'false') === 0 && $num_rows == 0){
     $successfullyRegistered = register($connection,$username, $email, $password);
 }
 
-if ($num_rows > 0) {
-    while($row = mysqli_fetch_assoc($result)){   
-        $userData[] = $row;
-        echo json_encode($userData);
-    }
-} elseif($successfullyRegistered){
+if($successfullyRegistered) {
     $userData[] = array($username);
     echo json_encode($userData);
+} else {
+
+    if ($num_rows > 0) {
+        while($row = mysqli_fetch_assoc($result)){   
+            $userData[] = $row;
+            echo json_encode($userData);
+        }
+    } else if ($num_rows == 0){
+        echo 0;
+    }
+    
 }
 
-if($num_rows == 0){
-    echo 0;
-}
 
 
 

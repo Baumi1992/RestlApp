@@ -104,21 +104,22 @@ $(document).ready(function () {
             data: data,
             url: 'authentication.php',
             success: function(data) {
-                userJSON = JSON.parse(data);
-                console.debug(userJSON);
-                
-                $('#ingredientMain').load("ingredient.html", function() {
-                    $(this).show();
-                    $('header, footer').css('display', 'flex');
-                    $('#ingredientMain').addClass("active"); 
-                    $('#loader').removeClass("active"); 
+                $('#signupForm').append("<h3>Erfolgreich registriert!</h3>");
+                // userJSON = JSON.parse(data);
+                // console.debug(userJSON);
+            
+                // $('#ingredientMain').load("ingredient.html", function() {
                     
-                    getallIngredients(ingredientJSON);
+                //     $('header, footer').css('display', 'flex');
+                //     $('#ingredientMain').addClass("active"); 
+                //     $('#loader').removeClass("active"); 
+                    
+                //     getallIngredients(ingredientJSON);
        
-                });
+                // });
                  
-                currentUser = userJSON[0][0];
-                console.log(currentUser);
+                // currentUser = userJSON[0];
+                // console.log(currentUser.username);
             },
             error: function(error) {
                 console.log(error);
@@ -188,14 +189,14 @@ $(document).ready(function () {
                 $('#failed_login').text(""); 
                 
                 if(data != "0"){
+                    userJSON = JSON.parse(data);
+                    console.debug(userJSON);
                     $('#failed_login').text(""); 
                 
                     console.log(typeof data);
 
-                    userJSON = JSON.parse(data);
-                    console.debug(userJSON);
-                    currentUser = userJSON[0];
-                    console.log(currentUser.username);
+                    
+                   
                     
                     $('#ingredientMain').load("ingredient.html", function() {
                         $('header, footer').css('display', 'flex');
@@ -205,8 +206,8 @@ $(document).ready(function () {
            
                     });
 
-                    // currentUser = userJSON[0];
-                    // console.log(currentUser);
+                    currentUser = userJSON[0];
+                    console.log(currentUser.username);
                 }else {
                     $('#failed_login').append("<p>USERNAME ODER PASSWORT STIMMT NICHT!</p>");
                     $('#loginFormButton').append('<input type="submit" id="forgotten_password" value="Passwort vergessen">');  
