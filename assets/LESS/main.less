@@ -29,7 +29,7 @@ main{
 
 #ingredientMain, #recipeMain{
   height: 82vh;
-  background-color: rgb(75, 70, 70);
+  background-color: rgb(36, 36, 36);
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -45,12 +45,22 @@ align-items: center;
 width: 100%;
 }
 
+#webuserMain, #listMain{
+  height: 82vh;
+  background-color: rgb(255, 255, 255);
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-left: 5vw;
+}
+
 header{
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: rgb(44, 44, 44);
+  background-color: #242424;
   height: 10vh;
+  border-bottom: 3px solid #9b9b9b;
   .col-12{
     display: flex;
     flex-direction: row;
@@ -68,10 +78,11 @@ footer{
   position: fixed;
   display: flex;
   align-items: center;
-  background-color: rgb(44, 44, 44);
+  background-color: #242424;
   height: 8vh;
   padding: 0px 30px;
-  .col-12{
+  border-top: 3px solid #9b9b9b;
+    .col-12{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -142,3 +153,7 @@ input[type=submit]{
   border: 2px solid black;
 }
 
+
+ul{
+  list-style: none;
+}

@@ -3888,7 +3888,9 @@ readers do not read off random characters that represent icons */
   content: "\f00d"; }
 
 .fa-times-circle:before {
-  content: "\f057"; }
+  content: "\f057";
+  font-size: 4rem; 
+}
 
 .fa-tint:before {
   content: "\f043"; }

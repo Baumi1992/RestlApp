@@ -5,6 +5,8 @@ let recipeJSON;
 let dataBase;
 let userJSON;
 let currentUser;
+let currentEmail;
+let amount;
 $(document).ready(function () {
     openDb();
     if('serviceWorker' in navigator){
@@ -31,15 +33,12 @@ $(document).ready(function () {
         }
     });
 
-
-
     $('#loader').load( "loader.html");
     searchingIngredient();
     setTimeout(function(){
     console.log('TEST');
     $('#popUp').css('display', 'flex');
     }, 1000); //11000
-    
     
     // ------------------- SHOW LOGINFORM -------------------- //
     $('html').on("click", "#loginButton", function(){
@@ -60,35 +59,27 @@ $(document).ready(function () {
 
         $('main > div.active').removeClass('active');
         $('.footerNav').removeClass("active");
-
         $('#' + buttonID + 'Main').addClass('active');
 
         if($('#' + buttonID + 'Main').is(':empty')) {
 
             let loaded = $('#' + buttonID + 'Main').load( buttonID + ".html", function() {
             //console.log('test');
-               
                 if( buttonID == 'ingredient') {
-                   
                     getallIngredients(ingredientJSON);
                     searchingIngredient();
                 }
                 else if(buttonID == 'recipe'){
                     getallRecipes();
                     searchingRecipe(loaded);
-                   
                 }
-                else if(buttonID == 'list'){
-                    
+                else if(buttonID == 'list'){   
                 }
                 else if(buttonID == 'webuser'){
-                    $('#userWelcome').append("Hi, " + currentUser.username + "");
-                    
+                   $('#userWelcome').append("Hi, " + currentUser + "");      
+                        
                 }
-
-            });
-
-            
+            });    
         }
         $('#' + buttonID + 'Main').addClass('active');
         $('#'+ buttonID).addClass("active");
@@ -105,21 +96,6 @@ $(document).ready(function () {
             url: 'authentication.php',
             success: function(data) {
                 $('#signupForm').append("<h3>Erfolgreich registriert!</h3>");
-                // userJSON = JSON.parse(data);
-                // console.debug(userJSON);
-            
-                // $('#ingredientMain').load("ingredient.html", function() {
-                    
-                //     $('header, footer').css('display', 'flex');
-                //     $('#ingredientMain').addClass("active"); 
-                //     $('#loader').removeClass("active"); 
-                    
-                //     getallIngredients(ingredientJSON);
-       
-                // });
-                 
-                // currentUser = userJSON[0];
-                // console.log(currentUser.username);
             },
             error: function(error) {
                 console.log(error);
@@ -128,6 +104,41 @@ $(document).ready(function () {
             }
         }); 
     });
+
+    $('html').on("click", "#changeButton", function(event) {
+        event.preventDefault();
+        var data = {username: $('#userWelcome').text(), email: currentEmail , newUsername: $('#changeUser').val()/*, newPassword: $('#changePassword')*/};
+        console.log(currentUser);
+        console.log(typeof currentUser);
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: 'changeUsername.php',
+            success: function(data) {
+                console.log(data);
+                    currentUser = data;
+                    console.log(currentUser);
+                    console.log(currentUser.username);
+                $('#changeText').empty();
+                $('#changeText').append("Username erfolgreich geändert!");
+                $('#userWelcome').empty();  
+                $('#userWelcome').append("Hi, " + currentUser + "");  
+            },
+            error: function(error) {
+                console.log(error);
+                alert('Opps, something went wrong! Please try again!')
+                    //window.location.href="http://localhost/ResteApp/index.html";
+            }
+        }); 
+    });
+
+    $('html').on("click", "#logout", function(event) {
+        location.reload();
+       
+    });
+
+
+
 
     $('html').on("keyup", "#signupEmail", function() {
         $('#failed').empty();
@@ -151,7 +162,6 @@ $(document).ready(function () {
                     $(user).css('color', '#26a849');
                     $('#userTaken').text("");
                     $('#signUp').attr('disabled', false);
-                    
                 };
             },
             error: function(error) {
@@ -170,6 +180,49 @@ $(document).ready(function () {
             $(this).css('color', 'green');
             $('#password').text("");
         };   
+    });
+
+    $('html').on("click", ".selectedIngredient", function() {
+        let name = $(this).data('name');
+        console.log('EDID CLICKED');
+        $('#popUpEdit').css('display', 'flex');
+        $('.name').empty();
+        $('.name').append("<div class='name'>"+ name +"</div>");
+        
+
+
+    });
+
+    $('html').on("click", "#settings", function() {
+        
+        console.log('Settings CLICKED');
+        $('#popUpChange').css('display', 'flex');
+        // $('.name').empty();
+        // $('.name').append("<div class='name'>"+ name +"</div>");
+        
+
+
+    });
+
+    $('html').on("click", ".popup_close", function(event){
+        $('#popUpEdit').css('display', 'none');
+        $('#popUpChange').css('display', 'none');
+
+    });
+
+    $('html').on("click", "#editButton", function(event){
+        event.preventDefault();
+        console.log('SAVED');
+
+        if($('#amountInput').val() != ""){
+            amount = $('#amountInput').val();
+            $('.amount').empty();
+            $('.amount').append(amount);
+        }
+
+        $('#popUpEdit').css('display', 'none');
+        
+        
     });
 
 
@@ -194,92 +247,75 @@ $(document).ready(function () {
                     $('#failed_login').text(""); 
                 
                     console.log(typeof data);
-
-                    
-                   
-                    
                     $('#ingredientMain').load("ingredient.html", function() {
                         $('header, footer').css('display', 'flex');
                         $('#ingredientMain').addClass("active"); 
                         $('#loader').removeClass("active"); 
                         getallIngredients(ingredientJSON);
-           
                     });
 
                     currentUser = userJSON[0];
-                    console.log(currentUser.username);
+                    currentEmail = userJSON[1];
+                    console.log(currentUser);
+                    console.log(currentEmail);
+
                 }else {
                     $('#failed_login').append("<p>USERNAME ODER PASSWORT STIMMT NICHT!</p>");
                     $('#loginFormButton').append('<input type="submit" id="forgotten_password" value="Passwort vergessen">');  
                 }
-                
-                
             },
             error: function(error) {
-                console.log(error);
-                
+                console.log(error);   
             }
         });
     });
-
 });
 
 function getallIngredients(ingredientJSON){
     
-    
-
     console.log('ingredients loaded');
     let item;
     let selectedItem;
     console.log(ingredientJSON);
     for (let j = 0; j < ingredientJSON.length; j++) {
-    
         allIngredients[j]= {
                                 ingredientID: ingredientJSON[j]['ingredientID'],
                                 name: ingredientJSON[j]['name'],
                                 amount: ingredientJSON['mengenAngabe'],
                                 iconURL: ingredientJSON[j]['iconURL'],
     };
-
         item = $("<div class='ingredient' data-id='" + ingredientJSON[j]['ingredientID'] + "' data-name='" + ingredientJSON[j]['name'].toLowerCase() +"'><img class='itemImage' src='assets/ICONS/" + ingredientJSON[j]['iconURL'] +"' alt='"+ ingredientJSON[j]['name'] +"'>" + ingredientJSON[j]['name'] + "</div>");
         
         $(item).click(function(){
-        let ingredientName= $(this).text();
-        let amount = 1;
-        //console.log(ingredientID);
-        selectedItem = $("<div class='ingredient' data-id='" + ingredientJSON[j]['ingredientID'] + "'><img class='itemImage' src='assets/ICONS/" + ingredientJSON[j]['iconURL'] +"' alt='"+ ingredientJSON[j]['name'] +"'><div class='amountEdit'>" + amount + " " +  ingredientJSON[j]['mengenAngabe'] +"</div>" + ingredientJSON[j]['name'] + "</div>");
-
-        $(this).toggleClass('selected');
-
-        if($(this).hasClass('selected')){
-            $('#selectedIngredientList').append(selectedItem);
-            selectedIngredients[ingredientName] = amount;
-            addIngredient(ingredientName, 'ingredientList', ingredientJSON[j]['iconURL'], amount);
+            let ingredientName= $(this).text();
             
-            console.log(selectedIngredients);
-        }else if($(this).hasClass('ingredient')){
-            let currentID = $(this).data('id');
-            $('#selectedIngredientList').find('[data-id="'+ currentID +'"]').remove();
-            removeIngredient(ingredientName, 'ingredientList');
-            delete selectedIngredients[ingredientName];    
-        }
+            //console.log(ingredientID);
+            selectedItem = $("<div class='selectedIngredient' data-id='" + ingredientJSON[j]['ingredientID'] + "' data-name='"+ ingredientJSON[j]['name'] +"'><img class='itemImage' src='assets/ICONS/" + ingredientJSON[j]['iconURL'] +"' alt='"+ ingredientJSON[j]['name'] +"'><div class='amountEdit'><div class='amount'>1 </div><div class='unit'>"+ " " +  ingredientJSON[j]['mengenAngabe'] +"</div></div>" + ingredientJSON[j]['name'] + "</div>");
 
+            $(this).toggleClass('selected');
 
+            if($(this).hasClass('selected')){
+                $('#selectedIngredientList').append(selectedItem);
+                selectedIngredients[ingredientName] = amount;
+                addIngredient(ingredientName, 'ingredientList', ingredientJSON[j]['iconURL'], amount);
+                console.log(selectedIngredients);
+            }else if($(this).hasClass('ingredient')){
+                let currentID = $(this).data('id');
+                $('#selectedIngredientList').find('[data-id="'+ currentID +'"]').remove();
+                removeIngredient(ingredientName, 'ingredientList');
+                delete selectedIngredients[ingredientName];    
+            }
         })
         $('#ingredientList').append(item);  
     }
-
 console.log(allIngredients);
-
 };
 
 function searchingIngredient(){
 
-    
     $('html').on("keyup", '#ingredientSearch', function() {
     
     let inputValue = $(this).val().toLowerCase();
-    
         $('#ingredientList .ingredient').each(function(){
         if($(this).data('name').indexOf(inputValue) <= -1){
             $(this).css('display', 'none');
@@ -287,11 +323,8 @@ function searchingIngredient(){
             $(this).css('display', 'flex');
         }
         });
-
     });
 };
-
-
 
 //Opening a Database
 function openDb(){
@@ -302,25 +335,22 @@ function openDb(){
     //Generating handlers
     //Error handlers
     request.onerror = function(event) {
-    console.log("Error: ")
+        console.log("Error: ")
     };
     //OnSuccess Handler
     request.onsuccess = function(event) {
         console.log("Success: ")
-
         dataBase = event.target.result
         console.log(dataBase);
 
         if(dataBase){
             dataBase.transaction(["ingredientList"], "readwrite").objectStore('ingredientList').getAll().onsuccess = function(e) {
                 console.log(e.target.result);
-            
                 e.target.result.forEach(function(ingredient , value){
                     console.log(ingredient.name);
                     selectedItem = $("<div class='ingredient' data-name='"+ ingredient.name.toLowerCase() +"'><img class='itemImage' src='assets/ICONS/" + ingredient.url +"' alt='"+ ingredient.name +"'><div>"+ ingredient.amount +"</div>"+ ingredient.name +"</div>");
                     listElement = $('<div class="myIngredientList"><div class="myIngredient" data-name=" '+ ingredient.name.toLowerCase() + '">' + ingredient.name + '</div><input type="number" placeholder="Menge eingeben"></div>');
                     $('#selectedIngredientList').append(selectedItem);
-                    $('#myIngredientContainer').append(listElement);
                     // console.log(data('name'));  
                     $('#ingredientList').find('[data-name="'+ ingredient.name.toLowerCase() +'"]').addClass('selected');
                 });
@@ -331,16 +361,12 @@ function openDb(){
     //OnUpgradeNeeded Handler
     request.onupgradeneeded = function(event) { 
         console.log("On Upgrade Needed")
-        
         dataBase = event.target.result;
         console.log(dataBase);
         // Create an objectStore for this database
         //Provide the ObjectStore name and provide the keyPath which acts as a primary key
-    
         var objectStore = dataBase.createObjectStore("ingredientList", {keyPath: 'name', autoIncrement: false });
     };
-
-
 };
 
 //Simple function to get the ObjectStore
@@ -352,8 +378,8 @@ function getObjectStore(store_name, mode) {
 }
 
 //Adding to the Database
-function addIngredient(ingredientName, store_name, URL) {
-    var obj = { name: ingredientName, amount: "1", url: URL };
+function addIngredient(ingredientName, store_name, URL, amount) {
+    var obj = { name: ingredientName, amount: amount, url: URL };
     var store = getObjectStore(store_name, 'readwrite');
     var req;
     try {
@@ -368,7 +394,6 @@ function addIngredient(ingredientName, store_name, URL) {
     console.log("Insertion in DB Failed ", this.error);
     };
 };
-
 
 //Removing from the Database
 function removeIngredient(ingredientName, store_name) {
@@ -387,71 +412,50 @@ function removeIngredient(ingredientName, store_name) {
     };
 };
 
-
 function getallRecipes(){
     $.ajax({
         type: "POST",
         url: 'getallRecipes.php',
         success: function(data) {
             console.log(data);
-
             recipeJSON = JSON.parse(data);
             console.log(recipeJSON);
-
             jQuery.each(recipeJSON, function() {
-
-                
                     console.log(this);
                     recipe = this;
                     recipeElement = "<div class='recipe' data-name='" + recipe.name.toLowerCase()+"'>"
-                    +"<div class='recipeHead'><img class='recipeImage' src='assets/RECIPEIMAGES/" + recipe.recipeURL +"' alt='"+ recipe.name +"'><div><div class='recipeTitle'>"+ recipe.name +"</div><p class='recipeIngredient'>Zubereitungsdauer: " + recipe.duration+" min</p><p class='recipeIngredient'>Schwierigkeit: " + recipe.level+"</p></div></div>";
-                    
-
-                    console.log(recipe.ingredient)
-
-                    for(let i = 0; i < recipe.ingredient.length; i++) {
-                        recipeElement += "<div><p class='recipeIngredient'>"+ recipe.ingredient[i] +"</p'></div>";
-                    }
-                    
-                    recipeElement += "<div class='recipePreperation'>"+ recipe.preperation +"</div></div>";
-                    
+                                        +"<div class='recipeHead'>"
+                                            +"<img class='recipeImage' src='assets/RECIPEIMAGES/" + recipe.recipeURL +"' alt='"+ recipe.name +"'>"
+                                            +"<div>"
+                                                +"<p class='recipeTitle'>"+ recipe.name +"</p>"
+                                                +"<p class='recipeDetails'>Dauer: " + recipe.duration +" min</p>"
+                                                +"<p class='recipeDetails'>Schwierigkeit: " + recipe.level+"</p>"
+                                            +"</div>"
+                                        +"</div>"
+                                        +"<div class='recipeIngredient'>"
+                                            +"<ul>";
+                                        console.log(recipe.ingredient)
+                                        for(let i = 0; i < recipe.ingredient.length; i++) {
+                                            recipeElement += "<li>"+ recipe.ingredient[i] +"</li>";
+                                        }
+                    recipeElement +=        "</ul>"
+                                        +"</div>"
+                                        +"<div class='recipePreperation'>"+ recipe.preperation +"</div>"
+                                    +"</div>";
                     $('#recipeList').append(recipeElement); 
-                   
-  
-            });
-
-
-            // for(let i = 0 ; i < recipeJSON.length ; i++){
-            //     console.log(recipeJSON[i]);
-            //     recipe = $("<div class='recipe' data-id='" + recipeJSON[i] + "' data-name='" + recipeJSON[i['name']].toLowerCase()+"'>"
-            //     +"<img class='recipeImage' src='assets/RECIPEIMAGES/" + recipeJSON[i]['recipeURL'] +"' alt='"+ recipeJSON[i]['name'] +"'>"
-            //     +"<div class='recipeTitle'>"+ recipeJSON[i]['name'] +"</div><div class='recipePreperation'>"
-            //     + recipeJSON[i]['preperation'] +"</div></div>");
-                
-                
-                 
-            //     $('#recipeList').append(recipe); 
-            // }
-            
-           
+            }); 
         },
         error: function(error) {
-            console.log(error);
-            
+            console.log(error); 
         }
     });
-
-  
 }
-
 
 function searchingRecipe(element){
     
     $(element).on("keyup", function() {
         console.log('recipe');  
-    
         let inputValue = $('#recipeSearch').val().toLowerCase();
-    
         $('#recipeList .recipe').each(function(){
         if($(this).data('name').indexOf(inputValue) <= -1){
             $(this).css('display', 'none');
@@ -459,9 +463,10 @@ function searchingRecipe(element){
             $(this).css('display', 'flex');
         }
         });
-
     });
 };
+
+
 
 
 

@@ -8,9 +8,9 @@ $connection = mysqli_connect("localhost", "root", "", "restlapp");
 
 
 if(strcmp($login, 'true') === 0 ) {
-    $select = "SELECT username FROM webuser WHERE email='". $_POST['email']."' AND password='". md5($_POST['password'])."'";
+    $select = "SELECT username, email FROM webuser WHERE email='". $_POST['email']."' AND password='". md5($_POST['password'])."'";
 } else {
-    $select = "SELECT username FROM webuser WHERE email='$email'";
+    $select = "SELECT username, email FROM webuser WHERE email='$email'";
 }
 
 $result=mysqli_query($connection,$select);
@@ -22,14 +22,20 @@ if(strcmp($login, 'false') === 0 && $num_rows == 0){
 }
 
 if($successfullyRegistered) {
-    $userData[] = array($username);
+    $userData[] = array($username, $email);
     echo json_encode($userData);
+    
+    
 } else {
 
     if ($num_rows > 0) {
         while($row = mysqli_fetch_assoc($result)){   
-            $userData[] = $row;
+            $userData[] = $row['username'];
+            $userData[] = $row['email'];
+
             echo json_encode($userData);
+          
+            
         }
     } else if ($num_rows == 0){
         echo 0;
