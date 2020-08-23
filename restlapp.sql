@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 18. Aug 2020 um 21:15
--- Server-Version: 10.4.11-MariaDB
--- PHP-Version: 7.4.5
+-- Erstellungszeit: 23. Aug 2020 um 10:13
+-- Server-Version: 10.4.13-MariaDB
+-- PHP-Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,36 +41,58 @@ CREATE TABLE `ingredient` (
 INSERT INTO `ingredient` (`ingredientID`, `iconURL`, `name`, `mengenAngabe`) VALUES
 (1, 'apfel.png', 'Apfel', 'Stück'),
 (2, 'banane.png', 'Banane', 'Stück'),
-(3, 'kirsche.png', 'Kirsche', ''),
-(4, 'ananas.png', 'Ananas', ''),
-(5, 'birne.png', 'Birne', ''),
-(6, 'aprikose.png', 'Marille', ''),
-(7, 'avocado.png', 'Avocado', ''),
-(8, 'brokkoli.png', 'Brokkoli', ''),
-(9, 'chili.png', 'Chili', ''),
-(10, 'erbse.png', 'Erbse', ''),
-(11, 'erdbeere.png', 'Erdbeere', ''),
-(12, 'karotte.png', 'Karotte', ''),
-(13, 'kartoffel.png', 'Kartoffel', ''),
-(14, 'knoblauch.png', 'Knoblauch', ''),
-(15, 'kuerbis.png', 'Kürbis', ''),
-(16, 'lauch.png', 'Lauch', ''),
-(17, 'mais.png', 'Mais', ''),
-(18, 'mango.png', 'Mango', ''),
-(19, 'melanzani.png', 'Melanzani', ''),
-(20, 'olive.png', 'Olive', ''),
-(21, 'orange.png', 'Orange', ''),
-(22, 'paprika.png', 'Paprika', ''),
-(23, 'pilz.png', 'Pilz', ''),
-(24, 'rettich.png', 'Rettich', ''),
-(25, 'rueben.png', 'Rübe', ''),
-(26, 'tomate.png', 'Tomate', ''),
-(27, 'traube.png', 'Traube', ''),
-(28, 'wassermelone.png', 'Wassermelone', ''),
-(29, 'zitrone.png', 'Zitrone', ''),
-(30, 'zucchini.png', 'Zucchini', ''),
-(31, 'zwiebel.png', 'Zwiebel', ''),
-(32, 'steckruebe.png', 'Steckrübe', '');
+(3, 'kirsche.png', 'Kirsche', 'Stück'),
+(4, 'ananas.png', 'Ananas', 'Stück'),
+(5, 'birne.png', 'Birne', 'Stück'),
+(6, 'aprikose.png', 'Marille', 'Stück'),
+(7, 'avocado.png', 'Avocado', 'Stück'),
+(8, 'brokkoli.png', 'Brokkoli', 'Stück'),
+(9, 'chili.png', 'Chili', 'Stück'),
+(10, 'erbse.png', 'Erbse', 'Stück'),
+(11, 'erdbeere.png', 'Erdbeere', 'Stück'),
+(12, 'karotte.png', 'Karotte', 'Stück'),
+(13, 'kartoffel.png', 'Kartoffel', 'Stück'),
+(14, 'knoblauch.png', 'Knoblauch', 'Stück'),
+(15, 'kuerbis.png', 'Kürbis', 'Stück'),
+(16, 'lauch.png', 'Lauch', 'Stück'),
+(17, 'mais.png', 'Mais', 'Stück'),
+(18, 'mango.png', 'Mango', 'Stück'),
+(19, 'melanzani.png', 'Melanzani', 'Stück'),
+(20, 'olive.png', 'Olive', 'Stück'),
+(21, 'orange.png', 'Orange', 'Stück'),
+(22, 'paprika.png', 'Paprika', 'Stück'),
+(23, 'pilz.png', 'Pilz', 'Stück'),
+(24, 'rettich.png', 'Rettich', 'Stück'),
+(25, 'rueben.png', 'Rübe', 'Stück'),
+(26, 'tomate.png', 'Tomate', 'Stück'),
+(27, 'traube.png', 'Traube', 'Stück'),
+(28, 'wassermelone.png', 'Wassermelone', 'Stück'),
+(29, 'zitrone.png', 'Zitrone', 'Stück'),
+(30, 'zucchini.png', 'Zucchini', 'Stück'),
+(31, 'zwiebel.png', 'Zwiebel', 'Stück'),
+(32, 'steckruebe.png', 'Steckrübe', 'Stück'),
+(33, 'milk.png', 'Milch', 'ml'),
+(34, 'bacon.png', 'Speck', 'Streifen'),
+(35, 'bread.png', 'Brot', 'Scheiben'),
+(36, 'butter.png', 'Butter', 'g'),
+(37, 'cheese.png', 'Käse', 'g'),
+(38, 'chicken.png', 'Hühnerfleisch', 'g'),
+(39, 'egg.png', 'Ei', 'Stück'),
+(40, 'fish.png', 'Fisch', 'Stück'),
+(41, 'flour.png', 'Mehl', 'g'),
+(42, 'ginger.png', 'Ingwer', 'Stück'),
+(43, 'ham.png', 'Schinken', 'Streifen'),
+(44, 'honey.png', 'Honig', 'Teelöffel'),
+(45, 'ketchup.png', 'Ketchup', 'Teelöffel'),
+(46, 'lamb.png', 'Lammfleisch', 'Stück'),
+(47, 'meat.png', 'Wurst', 'Stück'),
+(48, 'olive-oil.png', 'Olivenöl', 'ml'),
+(49, 'pork.png', 'Schweinefleisch', 'Stück'),
+(50, 'sugar.png', 'Zucker', 'Teelöffel'),
+(51, 'pork.png', 'Rindfleisch', 'Stück'),
+(52, 'frozen-yogurt.png', 'Joghurt', 'ml'),
+(53, 'frozen-yogurt.png', 'Sauerrahm', 'ml'),
+(54, 'frozen-yogurt.png', 'Sahne', 'ml');
 
 -- --------------------------------------------------------
 
@@ -80,11 +102,20 @@ INSERT INTO `ingredient` (`ingredientID`, `iconURL`, `name`, `mengenAngabe`) VAL
 
 CREATE TABLE `recipe` (
   `recipeID` int(10) NOT NULL,
+  `recipeName` varchar(100) NOT NULL,
   `recipeImageURL` varchar(100) NOT NULL,
-  `preperation` varchar(100) NOT NULL,
+  `preperation` varchar(500) NOT NULL,
   `duration` int(10) NOT NULL,
   `level` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `recipe`
+--
+
+INSERT INTO `recipe` (`recipeID`, `recipeName`, `recipeImageURL`, `preperation`, `duration`, `level`) VALUES
+(1, 'Erdbeermilch', 'erdbeermilch.png', 'Die Erdbeeren putzen und waschen. Danach die Erdbeeren zerkleinern, Milch hinzufügen und mit dem Stabmixer pürieren.', 10, 'einfach'),
+(3, 'Bananenmilch', 'bananenmilch.png', 'Zuerst die Bananen schälen, in Stücke brechen und gemeinsam mit etwas Milch im Mixer pürieren.\r\nDanach die restliche Milch zugeben. Ungefähr 20 Sekunden mixen, sodass keine Bananenstücke mehr zu sehen sind', 10, 'einfach');
 
 -- --------------------------------------------------------
 
@@ -94,8 +125,21 @@ CREATE TABLE `recipe` (
 
 CREATE TABLE `recipe_ingredient` (
   `recipeID` int(11) NOT NULL,
-  `ingredientID` int(11) NOT NULL
+  `ingredientID` int(11) NOT NULL,
+  `menge` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Daten für Tabelle `recipe_ingredient`
+--
+
+INSERT INTO `recipe_ingredient` (`recipeID`, `ingredientID`, `menge`) VALUES
+(1, 11, 10),
+(1, 33, 100),
+(1, 50, 10),
+(3, 2, 1),
+(3, 33, 100),
+(3, 50, 10);
 
 -- --------------------------------------------------------
 
@@ -117,9 +161,16 @@ CREATE TABLE `webuser` (
 --
 
 INSERT INTO `webuser` (`webuserID`, `username`, `password`, `email`, `webuserImageURL`, `ingredientList`) VALUES
-(1, 'Baumi', '202cb962ac59075b964b07152d234b70', 'baumgartner17@gmail.com', NULL, NULL),
-(2, 'Liane', '827ccb0eea8a706c4c34a16891f84e7b', 'liane.glaser@gmx.at', NULL, NULL),
-(10, 'Baumiiii', '202cb962ac59075b964b07152d234b70', 'baumi', NULL, NULL);
+(38, 'baumi', '202cb962ac59075b964b07152d234b70', 'baumi', NULL, NULL),
+(48, 'baumi55', '81dc9bdb52d04dc20036dbd8313ed055', 'baumi55', NULL, NULL),
+(50, 'baumipeter', '202cb962ac59075b964b07152d234b70', 'baumi5', NULL, NULL),
+(51, 'test', '098f6bcd4621d373cade4e832627b4f6', 'test@test.com', NULL, NULL),
+(53, 'bp', '202cb962ac59075b964b07152d234b70', 'bp', NULL, NULL),
+(54, 'baumi55', '202cb962ac59075b964b07152d234b70', 'baumi555', NULL, NULL),
+(55, 'baumi5555', '202cb962ac59075b964b07152d234b70', 'baumi5555', NULL, NULL),
+(56, 'peter', '202cb962ac59075b964b07152d234b70', 'peter55', NULL, NULL),
+(57, 'baumipeter', '202cb962ac59075b964b07152d234b70', 'baumipeter', NULL, NULL),
+(58, 'baumi44', '202cb962ac59075b964b07152d234b70', 'baumi44', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -176,19 +227,19 @@ ALTER TABLE `webuser_recipe`
 -- AUTO_INCREMENT für Tabelle `ingredient`
 --
 ALTER TABLE `ingredient`
-  MODIFY `ingredientID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `ingredientID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT für Tabelle `recipe`
 --
 ALTER TABLE `recipe`
-  MODIFY `recipeID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `recipeID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `webuser`
 --
 ALTER TABLE `webuser`
-  MODIFY `webuserID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `webuserID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Constraints der exportierten Tabellen
