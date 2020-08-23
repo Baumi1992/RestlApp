@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 23. Aug 2020 um 10:13
--- Server-Version: 10.4.13-MariaDB
--- PHP-Version: 7.4.8
+-- Erstellungszeit: 23. Aug 2020 um 20:58
+-- Server-Version: 10.4.11-MariaDB
+-- PHP-Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -92,7 +92,8 @@ INSERT INTO `ingredient` (`ingredientID`, `iconURL`, `name`, `mengenAngabe`) VAL
 (51, 'pork.png', 'Rindfleisch', 'Stück'),
 (52, 'frozen-yogurt.png', 'Joghurt', 'ml'),
 (53, 'frozen-yogurt.png', 'Sauerrahm', 'ml'),
-(54, 'frozen-yogurt.png', 'Sahne', 'ml');
+(54, 'frozen-yogurt.png', 'Sahne', 'ml'),
+(55, 'salt.png', 'Salz', 'Teelöffel');
 
 -- --------------------------------------------------------
 
@@ -104,7 +105,7 @@ CREATE TABLE `recipe` (
   `recipeID` int(10) NOT NULL,
   `recipeName` varchar(100) NOT NULL,
   `recipeImageURL` varchar(100) NOT NULL,
-  `preperation` varchar(500) NOT NULL,
+  `preperation` varchar(3000) NOT NULL,
   `duration` int(10) NOT NULL,
   `level` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -115,7 +116,8 @@ CREATE TABLE `recipe` (
 
 INSERT INTO `recipe` (`recipeID`, `recipeName`, `recipeImageURL`, `preperation`, `duration`, `level`) VALUES
 (1, 'Erdbeermilch', 'erdbeermilch.png', 'Die Erdbeeren putzen und waschen. Danach die Erdbeeren zerkleinern, Milch hinzufügen und mit dem Stabmixer pürieren.', 10, 'einfach'),
-(3, 'Bananenmilch', 'bananenmilch.png', 'Zuerst die Bananen schälen, in Stücke brechen und gemeinsam mit etwas Milch im Mixer pürieren.\r\nDanach die restliche Milch zugeben. Ungefähr 20 Sekunden mixen, sodass keine Bananenstücke mehr zu sehen sind', 10, 'einfach');
+(3, 'Bananenmilch', 'bananenmilch.png', 'Zuerst die Bananen schälen, in Stücke brechen und gemeinsam mit etwas Milch im Mixer pürieren.\r\nDanach die restliche Milch zugeben. Ungefähr 20 Sekunden mixen, sodass keine Bananenstücke mehr zu sehen sind', 10, 'einfach'),
+(4, 'Käsespätzle', 'kaesespaetzle.png', 'Das Mehl in eine Schüssel geben, in die Mitte eine Vertiefung drücken und die Eier hineinschlagen, Salz zugeben. 40 ml Wassers dazu gießen und alles mit Hilfe eines Kochlöffels zu einem feinen Teig verrühren. Den Teig so lange kräftig schlagen, bis er von glatter, zäher Konsistenz ist und in dicken Tropfen vom Löffel fällt. Bei Bedarf weiteres Wasser zufügen. Anschließend den Teig für 15 Minuten ruhen lassen. Den Bergkäse reiben und mit dem geriebenen Emmentaler in einer Schale vermischen. Die Zwiebeln schälen und in dünne Ringe schneiden. Anschließend 80 g Butter bei mittlerer Hitze in eine Pfanne geben und schmelzen lassen. Die Zwiebelscheiben darin so lange braten, bis sie kross und goldbraun sind. Einen Topf mit Wasser zum Kochen bringen. Einen Teil des Spätzleteiges durch einen Spätzlehobel - ein Lochblech mit einem Gefäß, das hin- und hergeschoben wird - in sprudelnd kochendes Wasser tropfen lassen. Die frei schwimmenden Spätzle im Wasser ziehen lassen, bis sie an die Oberfläche steigen. Diese dann mit einem Schaumlöffel vorsichtig herausnehmen. Den Vorgang wiederholen, bis der gesamte Teig verbraucht ist. Die restlichen 20 g Butter in zwei entsprechend großen Pfannen zerlassen. Die Pfannenboden mit der ersten Schicht Spätzle bedecken und darauf eine Schicht Käse geben. Abwechselnd Spätzle und Käse in beide Pfannen einschichten, bis alle Zutaten verbraucht sind. Zum Schluss die gebratenen Zwiebeln über die Käsepätzle geben und mit Schnittlauch bestreuen.', 60, 'mittel');
 
 -- --------------------------------------------------------
 
@@ -139,7 +141,13 @@ INSERT INTO `recipe_ingredient` (`recipeID`, `ingredientID`, `menge`) VALUES
 (1, 50, 10),
 (3, 2, 1),
 (3, 33, 100),
-(3, 50, 10);
+(3, 50, 10),
+(4, 31, 2),
+(4, 36, 50),
+(4, 37, 130),
+(4, 39, 4),
+(4, 41, 250),
+(4, 55, 0.5);
 
 -- --------------------------------------------------------
 
@@ -161,16 +169,7 @@ CREATE TABLE `webuser` (
 --
 
 INSERT INTO `webuser` (`webuserID`, `username`, `password`, `email`, `webuserImageURL`, `ingredientList`) VALUES
-(38, 'baumi', '202cb962ac59075b964b07152d234b70', 'baumi', NULL, NULL),
-(48, 'baumi55', '81dc9bdb52d04dc20036dbd8313ed055', 'baumi55', NULL, NULL),
-(50, 'baumipeter', '202cb962ac59075b964b07152d234b70', 'baumi5', NULL, NULL),
-(51, 'test', '098f6bcd4621d373cade4e832627b4f6', 'test@test.com', NULL, NULL),
-(53, 'bp', '202cb962ac59075b964b07152d234b70', 'bp', NULL, NULL),
-(54, 'baumi55', '202cb962ac59075b964b07152d234b70', 'baumi555', NULL, NULL),
-(55, 'baumi5555', '202cb962ac59075b964b07152d234b70', 'baumi5555', NULL, NULL),
-(56, 'peter', '202cb962ac59075b964b07152d234b70', 'peter55', NULL, NULL),
-(57, 'baumipeter', '202cb962ac59075b964b07152d234b70', 'baumipeter', NULL, NULL),
-(58, 'baumi44', '202cb962ac59075b964b07152d234b70', 'baumi44', NULL, NULL);
+(38, 'baumi', '202cb962ac59075b964b07152d234b70', 'baumi', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -227,13 +226,13 @@ ALTER TABLE `webuser_recipe`
 -- AUTO_INCREMENT für Tabelle `ingredient`
 --
 ALTER TABLE `ingredient`
-  MODIFY `ingredientID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `ingredientID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT für Tabelle `recipe`
 --
 ALTER TABLE `recipe`
-  MODIFY `recipeID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `recipeID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `webuser`
