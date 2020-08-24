@@ -1,7 +1,5 @@
 // out: ../CSS/style.css, compress: false, sourceMap: false
 
-/* Popup container */
-
 .modal {
   width: 80%;
   opacity: 0;
@@ -14,9 +12,6 @@
   -o-transition: opacity 600ms linear 600ms;
   transition: opacity 600ms linear 600ms;
 }
-
-
-
 .modal_info {
   background: #fcfcfc;
   padding: 50px 50px;
@@ -181,7 +176,6 @@ button.modal_close span:after {
   top: 2px;
 }
 
-
 .indexH1{
   margin-top: 20vh;
 
@@ -225,8 +219,6 @@ main > div{
   color: rgb(252, 76, 76);
 }
 
-
-
 #ingredientList {
   display: flex;
   flex-direction: row;
@@ -251,9 +243,6 @@ main > div{
   padding: 0px;
   flex-wrap: wrap;
 }
-
-
-
 
 .itemImage{
   margin-bottom: 10px;
@@ -490,7 +479,6 @@ main > div{
 
 }
 
-
 #popUpChange > div{
   display: flex;
   flex-direction: column;
@@ -534,9 +522,10 @@ main > div{
 }
 
 .recipe {
+
   font-size: 1.75rem;
   color: white;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   width: 80%;
@@ -593,7 +582,6 @@ main > div{
 
 .amountEdit{
   display: flex;
-  
 }
 
 .amount, .unit {
@@ -602,27 +590,33 @@ main > div{
   font-weight: bold;
 }
 
-
-
 #settings, #about{
   display: flex;
-    font-size: 4rem;
-    margin: 1vh 3vh;
-    color: rgb(26,105,23);
-    font-weight: bold;
+  font-size: 4rem;
+  margin: 1vh 3vh;
+  color: rgb(26,105,23);
+  font-weight: bold;
 }
 
-.currentItem{
+.available{
   display: flex;
 }
 
 #buttonContainer{
   display: flex;
   flex-direction: row;
+  color: #fff;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 input[type=checkbox]{
-  font-size: 2rem;
+  height: 3vh;
+  width: 10%;
+}
+
+label{
+  font-size: 3rem;
 }
 
 

@@ -1,4 +1,3 @@
-/* Popup container */
 .modal {
   width: 80%;
   opacity: 0;
@@ -464,7 +463,7 @@ main > div {
 .recipe {
   font-size: 1.75rem;
   color: white;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   width: 80%;
@@ -525,4 +524,21 @@ main > div {
   margin: 1vh 3vh;
   color: #1a6917;
   font-weight: bold;
+}
+.available {
+  display: flex;
+}
+#buttonContainer {
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+  justify-content: flex-end;
+  align-items: center;
+}
+input[type=checkbox] {
+  height: 3vh;
+  width: 10%;
+}
+label {
+  font-size: 3rem;
 }

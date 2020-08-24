@@ -53,7 +53,7 @@ $(document).ready(function () {
     searchingIngredient();
     setTimeout(function(){
     $('#popUp').css('display', 'flex');
-    }, 20); //11000
+    }, 500); //11000
     
     // ------------------- SHOW LOGINFORM -------------------- //
     $('html').on("click", "#loginButton", function(){
@@ -325,7 +325,7 @@ function searchingIngredient(){
     let inputValue = $(this).val().toLowerCase();
         $('#ingredientList .ingredient').each(function(){
         if($(this).data('name').indexOf(inputValue) <= -1){
-            $(this).css('display', 'none');
+            $(this).addClas('display', 'none');
         }else{
             $(this).css('display', 'flex');
         }
@@ -493,7 +493,7 @@ function searchingRecipe(element){
 
 
 function getAvailableRecipes(recipeJSON){
-    $('.recipe').css('display', 'none');
+    
 
 
     dataBase.transaction(["ingredientList"], "readwrite").objectStore('ingredientList').getAll().onsuccess = function(e) {
@@ -535,15 +535,15 @@ function getAvailableRecipes(recipeJSON){
             console.log(recipeFound);
 
             if(recipeFound){
-                $('.recipe[data-name="'+ recipe.name.toLowerCase()  +'"]').css('display','flex');
+                $('.recipe[data-name="'+ recipe.name.toLowerCase()  +'"]').addClass('available');
                 $('.input-container').css('display', 'none');
                 
             }  
 
-            if ($('#selectedIngredientList').is(':empty')){ 
+            if ($('#showAllRecipe').is(':checked')){ 
     
-            $('.recipe').css('display', 'flex');
-            $('.input-container').css('display', 'flex');
+                $('.recipe').removeClass('available');
+                $('.input-container').css('display', 'flex');
                 
 
             };
