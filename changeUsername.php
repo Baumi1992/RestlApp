@@ -5,7 +5,6 @@ $newUser = $_POST['newUsername'];
 //$newPassword = md5($_POST['newPassword']);
 
 
-
 $servername = "localhost";
 $username = "root";
 $password = "";

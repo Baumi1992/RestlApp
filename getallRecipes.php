@@ -33,12 +33,16 @@ while ( $row = $result->fetch_assoc())  {
   
   if(isset($recipeArray[$row['recipeID']])){
 
-    $in = $row['menge'] . ' ' . $row['mengenAngabe'] . ' ' .$row['name'];
+    $in['amount'] = $row['menge'];
+    $in['unit'] = $row['mengenAngabe'];
+    $in['name'] = $row['name'];
 
     array_push($recipeArray[$row['recipeID']]['ingredient'], $in  );
    
   }else{
-    $in = $row['menge'] . ' ' . $row['mengenAngabe'] . ' ' .$row['name'];
+    $in['amount'] = $row['menge'];
+    $in['unit'] = $row['mengenAngabe'];
+    $in['name'] = $row['name'];
 
     $recipeArray[$row['recipeID']]=array("name"=>$row['recipeName'],"recipeURL"=>$row['recipeImageURL'],"ingredient"=>[$in],"preperation"=>$row['preperation'],"duration"=>$row['duration'],"level"=>$row['level']);
   }
