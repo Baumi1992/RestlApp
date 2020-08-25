@@ -53,7 +53,7 @@ $(document).ready(function () {
     searchingIngredient();
     setTimeout(function(){
     $('#popUp').css('display', 'flex');
-    }, 500); //11000
+    }, 3000); //11000
     
     // ------------------- SHOW LOGINFORM -------------------- //
     $('html').on("click", "#loginButton", function(){
