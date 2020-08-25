@@ -2,22 +2,32 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="input-container">
+                <!-- <div class="input-container">
                     <div class="fas fa-search icon" style="display: flex; justify-content: center; align-items: center;"></div>
                     <input type="text" name="recipe" id="recipeSearch" placeholder="Welches Rezept suchst du?"> 
-                </div> 
-                <div id="buttonContainer">
-                    <input type="checkbox" id="showAllRecipe" name="allRecipe">
+                </div>  -->
+                <!-- <div id="buttonContainer">
+                    <input type="radio" id="showAll" />
                     <label for="huey">Alle Rezepte anzeigen</label>
-                </div>  
+                </div>   -->
             </div> 
         </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div id="recipeList"></div>   
+                <div id="recipeList">
+                    <button type="button" class="collapsible">Vorspeisen</button>
+                        <div class="content" id="starter"></div>
+                    <button type="button" class="collapsible">Suppen</button>
+                        <div class="content" id="soups"></div>
+                    <button type="button" class="collapsible">Hauptspeisen</button>
+                        <div class="content" id="maincourse"></div>
+                    <button type="button" class="collapsible">Nachspeisen</button>
+                        <div class="content" id="dessert"></div> 
+                </div>  
             </div>   
         </div>
     </div>  
 </div>
+

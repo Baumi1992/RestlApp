@@ -16,7 +16,7 @@ $dbname = 'restlapp';
   }
 
 //Fetch 3 rows from actor table
-  $result = $dblink->query("SELECT * FROM recipe 
+  $result = $dblink->query("SELECT * FROM recipe  
   INNER JOIN recipe_ingredient
   ON recipe.recipeID = recipe_ingredient.recipeID
   INNER JOIN ingredient
@@ -44,7 +44,7 @@ while ( $row = $result->fetch_assoc())  {
     $in['unit'] = $row['mengenAngabe'];
     $in['name'] = $row['name'];
 
-    $recipeArray[$row['recipeID']]=array("name"=>$row['recipeName'],"recipeURL"=>$row['recipeImageURL'],"ingredient"=>[$in],"preperation"=>$row['preperation'],"duration"=>$row['duration'],"level"=>$row['level']);
+    $recipeArray[$row['recipeID']]=array("name"=>$row['recipeName'],"recipeURL"=>$row['recipeImageURL'],"ingredient"=>[$in],"preperation"=>$row['preperation'],"duration"=>$row['duration'],"level"=>$row['level'],"type"=>$row['type']);
   }
 
   

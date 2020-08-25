@@ -17,7 +17,7 @@ $dbname = 'restlapp';
   }
 
 //Fetch 3 rows from actor table
-  $result = $dblink->query("SELECT * FROM ingredient");
+  $result = $dblink->query("SELECT * FROM ingredient ORDER BY ingredientType ASC");
 
 //Initialize array variable  
 $dbdata = array();

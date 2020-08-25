@@ -316,6 +316,8 @@ function getallIngredients(ingredientJSON){
         })
         $('#ingredientList').append(item);  
     }
+
+    
 };
 
 function searchingIngredient(){
@@ -325,7 +327,7 @@ function searchingIngredient(){
     let inputValue = $(this).val().toLowerCase();
         $('#ingredientList .ingredient').each(function(){
         if($(this).data('name').indexOf(inputValue) <= -1){
-            $(this).addClas('display', 'none');
+            $(this).css('display', 'none');
         }else{
             $(this).css('display', 'flex');
         }
@@ -452,7 +454,7 @@ function changeIngredient(ingredientName, store_name, URL, amount, unit, id) {
 function getallRecipes(){
     jQuery.each(recipeJSON, function() {
             recipe = this;
-            recipeElement = "<div class='recipe' data-name='" + recipe.name.toLowerCase()+"'>"
+            recipeElement = "<div class='recipe' data-name='" + recipe.name.toLowerCase()+"' data-type='"+ recipe.type.toLowerCase()+"'>"
                                 +"<div class='recipeHead'>"
                                     +"<img class='recipeImage' src='assets/RECIPEIMAGES/" + recipe.recipeURL +"' alt='"+ recipe.name +"'>"
                                     +"<div>"
@@ -470,8 +472,39 @@ function getallRecipes(){
                                 +"</div>"
                                 +"<div class='recipePreperation'>"+ recipe.preperation +"</div>"
                             +"</div>";
-            $('#recipeList').append(recipeElement); 
+
+                    if($(recipeElement).data('type') == 'starter'){
+                        $('#starter').append(recipeElement); 
+
+                    }else if($(recipeElement).data('type') == 'soups'){
+                        $('#soups').append(recipeElement); 
+
+                    }else if($(recipeElement).data('type') == 'maincourse'){
+                        $('#maincourse').append(recipeElement); 
+                    
+                    }else if($(recipeElement).data('type') == 'dessert'){
+                        $('#dessert').append(recipeElement); 
+                    }
+
+                   
+           
     }); 
+
+    var coll = document.getElementsByClassName("collapsible");
+    var l;
+
+    for (l = 0; l < coll.length; l++) {
+    coll[l].addEventListener("click", function() {
+        console.log('CLICKED');
+        this.classList.toggle("open");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+        content.style.display = "none";
+        } else {
+        content.style.display = "block";
+        }
+    });
+    }
         
 };
 
@@ -494,8 +527,6 @@ function searchingRecipe(element){
 
 function getAvailableRecipes(recipeJSON){
     
-
-
     dataBase.transaction(["ingredientList"], "readwrite").objectStore('ingredientList').getAll().onsuccess = function(e) {
         let result =  e.target.result; 
 
@@ -535,23 +566,31 @@ function getAvailableRecipes(recipeJSON){
             console.log(recipeFound);
 
             if(recipeFound){
-                $('.recipe[data-name="'+ recipe.name.toLowerCase()  +'"]').addClass('available');
-                $('.input-container').css('display', 'none');
+                $('.recipe[data-name="'+ recipe.name.toLowerCase()  +'"]').css('display','flex');
                 
-            }  
-
-            if ($('#showAllRecipe').is(':checked')){ 
-    
+                
+            }
+            
+            if($('#selectedIngredientList').is(':empty')){
+                
                 $('.recipe').removeClass('available');
-                $('.input-container').css('display', 'flex');
-                
-
-            };
-
+                $('.recipe').css('display', 'flex');
+               
+            }
+           
         });
                 
     };
 }; 
+
+
+       
+
+
+
+   
+    
+
 
 
 
