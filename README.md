@@ -1,4 +1,4 @@
 # RestlApp
 ## Progressive Web App
 
-![RestlApp](.jpg)
+![RestlApp](assets/IMAGES/restlApp-200x200.png)
