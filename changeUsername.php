@@ -6,8 +6,8 @@ $newPassword = md5($_POST['newPassword']);
 
 
 $servername = "localhost";
-$username = "peter";
-$password = "Rennratte01";
+$username = "root";
+$password = "";
 $dbname = "restlapp";
 
 // Create connection

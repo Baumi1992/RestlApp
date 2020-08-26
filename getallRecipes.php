@@ -2,8 +2,8 @@
 
 // Initialize variable for database credentials
 $dbhost = 'localhost';
-$dbuser = 'peter';
-$dbpass = 'Rennratte01';
+$dbuser = 'root';
+$dbpass = '';
 $dbname = 'restlapp';
 
 //Create database connection
