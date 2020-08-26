@@ -1,4 +1,3 @@
 # RestlApp
 ## Progressive Web App
-<img src="assets/IMAGES/restlApp.png">
-![RestlApp](/assets/IMAGES/restlApp.jpg)
+![alt text](https://github.com/[Baumi1992]/[RestlApp]/blob/[branch]/restlApp.jpg?raw=true)
