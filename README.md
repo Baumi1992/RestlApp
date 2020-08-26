@@ -2,7 +2,8 @@
 ## Progressive Web App
 ![alt text](restlApp.jpg)
 
-<p align="center">
-  <img src="assets/IMAGES/restlApp.jpg" width="350" title="hover text">
-  
-</p>
+### Every eighth food we buy we throw away!
+### This has consequences for us and our environment!
+### We can change that!
+
+[bdesign](https://www.bdesign-studio.at)
