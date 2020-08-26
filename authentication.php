@@ -4,7 +4,7 @@ $email = $_POST['email'];
 $password = md5($_POST['password']);
 $login = $_POST['login'];
 $check = "";
-$connection = mysqli_connect("localhost", "root", "", "restlapp");
+$connection = mysqli_connect("localhost", "peter", "Rennratte01", "restlapp");
 
 
 if(strcmp($login, 'true') === 0 ) {

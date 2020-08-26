@@ -49,7 +49,7 @@ $(document).ready(function () {
     });
 
     $('#loader').load( "loader.html");
-    
+    openDb();
     searchingIngredient();
     setTimeout(function(){
     $('#popUp').css('display', 'flex');
@@ -80,10 +80,12 @@ $(document).ready(function () {
 
             let loaded = $('#' + buttonID + 'Main').load( buttonID + ".html", function() {
                 if( buttonID == 'ingredient') {
+                   
                     getallIngredients(ingredientJSON);
                     searchingIngredient();
                 }
                 else if(buttonID == 'recipe'){
+                   
                     getallRecipes(recipeJSON);
                     searchingRecipe(loaded);
                     getAvailableRecipes(recipeJSON);
@@ -130,7 +132,7 @@ $(document).ready(function () {
      // ------------------- CHANGE USERNAME -------------------- //
     $('html').on("click", "#changeButton", function(event) {
         event.preventDefault();
-        var data = {username: $('#userWelcome').text(), email: currentEmail , newUsername: $('#changeUser').val()/*, newPassword: $('#changePassword')*/};
+        var data = {username: $('#userWelcome').text(), email: currentEmail , newUsername: $('#changeUser').val(), newPassword: $('#changePassword').val()};
         $.ajax({
             type: "POST",
             data: data,
@@ -196,6 +198,21 @@ $(document).ready(function () {
             $('#password').text("");
         };   
     });
+
+
+    // ------------------- KEYUP CHANGEPASSWORD CHECKPASSWORD -------------------- //
+    $('html').on("keyup", "#changePassword2", function() {
+        $('#change').text("");
+        if($('#changePassword').val() != $(this).val()){
+            $(this).css('color', 'red');
+            $('#change').append("<p>Passwort nicht ident!</p>");
+        }
+        else{
+            $(this).css('color', 'green');
+            $('#change').text("");
+        };   
+    });
+
 
     $('html').on("click", ".selectedIngredient", function() {
         let name = $(this).data('name');
@@ -439,14 +456,14 @@ function changeIngredient(ingredientName, store_name, URL, amount, unit, id) {
         throw e;
         }
         addItem.onsuccess = function (evt) {
-        console.log("Insertion in DB successful");
+        console.log("Change in DB successful");
         };
         addItem.onerror = function() {
-        console.log("Insertion in DB Failed ", this.error);
+        console.log("Change in DB Failed ", this.error);
         };
     };
     req.onerror = function() {
-    console.log("Remove from DB Failed ", this.error);
+    console.log("Change from DB Failed ", this.error);
     };
 };
 
@@ -529,8 +546,9 @@ function getAvailableRecipes(recipeJSON){
     
     dataBase.transaction(["ingredientList"], "readwrite").objectStore('ingredientList').getAll().onsuccess = function(e) {
         let result =  e.target.result; 
-
-        jQuery.each(recipeJSON, function() {
+        console.log(result);
+        $('.recipe').css('display', 'none');
+        $.each(recipeJSON, function() {
             recipe = this;
             console.log(recipe);
             console.log(recipe.name + recipe.ingredient.length);
@@ -566,6 +584,7 @@ function getAvailableRecipes(recipeJSON){
             console.log(recipeFound);
 
             if(recipeFound){
+               
                 $('.recipe[data-name="'+ recipe.name.toLowerCase()  +'"]').css('display','flex');
                 
                 
@@ -575,9 +594,9 @@ function getAvailableRecipes(recipeJSON){
                 
                 $('.recipe').removeClass('available');
                 $('.recipe').css('display', 'flex');
-               
+            
             }
-           
+        
         });
                 
     };

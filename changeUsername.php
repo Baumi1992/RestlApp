@@ -2,12 +2,12 @@
 $user = $_POST['username'];
 $email = $_POST['email'];
 $newUser = $_POST['newUsername'];
-//$newPassword = md5($_POST['newPassword']);
+$newPassword = md5($_POST['newPassword']);
 
 
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "peter";
+$password = "Rennratte01";
 $dbname = "restlapp";
 
 // Create connection
@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 }
 
 // $sql = "UPDATE webuser SET username='$newUser', password='$newPassword' WHERE email='$email'";
-$sql = "UPDATE webuser SET username='$newUser' WHERE email='$email'";
+$sql = "UPDATE webuser SET username='$newUser', password='$newPassword' WHERE email='$email'";
 
 if ($conn->query($sql) === TRUE) {
   echo $newUser;
