@@ -8,6 +8,14 @@ let currentUser;
 let currentEmail;
 let amount = 1;
 let currentItem;
+
+let starterCounter =0;
+let soupCounter =0;
+let maincourseCounter=0;
+let dessertCounter=0;
+
+    
+
 $(document).ready(function () {
     
     if('serviceWorker' in navigator){
@@ -47,9 +55,11 @@ $(document).ready(function () {
         console.log('Error - ' + errorMessage);
         }
     });
+ 
 
     $('#loader').load( "loader.html");
     openDb();
+    getallRecipes(recipeJSON);
     searchingIngredient();
     setTimeout(function(){
     $('#popUp').css('display', 'flex');
@@ -66,6 +76,18 @@ $(document).ready(function () {
         console.log('signup');
         $('#loginForm').css('display', 'none');
         $('#signupForm').css('display', 'flex');
+
+        let signupEmail = $('#signupEmail').val();
+        let signupPassword = $('#signupPassword').val();
+        let signupPassword2 = $('#signupPassword2').val();
+        let userName = $('#userName').val();
+
+        
+        if(signupEmail=="" || signupPassword=="" || signupPassword2=="" || userName ==""){
+            $('#signUp').attr('disabled', 'true');
+        }else{
+            $('#signUp').attr('disabled', 'false');
+        }
     });
 
     // ------------------- CHANGE CONTENT BY CLICKING FOOTERBUTTON -------------------- //
@@ -85,11 +107,27 @@ $(document).ready(function () {
                     searchingIngredient();
                 }
                 else if(buttonID == 'recipe'){
-                   
-                    getallRecipes(recipeJSON);
-                    searchingRecipe(loaded);
-                    getAvailableRecipes(recipeJSON);
-                }
+
+                    if($('#selectedIngredientList').is(':empty')){
+                        getallRecipes(recipeJSON);
+                       
+                    }else{
+                        getAvailableRecipes(recipeJSON);
+
+                    }
+
+                                        
+                    $('.collapsible').click( function() {
+                        console.log('CLICKED');
+                        $(this).toggleClass("open");
+                        var content = $(this).next();
+                        if ($(content).css('display') === "block") {
+                            $(content).css('display', 'none');
+                        } else {
+                            $(content).css('display', 'block');
+                        }
+                    });
+                                    }
                 else if(buttonID == 'list'){   
                 }
                 else if(buttonID == 'webuser'){
@@ -100,7 +138,14 @@ $(document).ready(function () {
         }else {
 
             if(buttonID == 'recipe'){
-                getAvailableRecipes(recipeJSON);
+            
+                if($('#selectedIngredientList').is(':empty')){
+                        getallRecipes(recipeJSON);
+                        console.log('empty');
+                    }else{
+                        getAvailableRecipes(recipeJSON);
+
+                    }
             }
                 
 
@@ -158,6 +203,7 @@ $(document).ready(function () {
 
     // ------------------- KEYUP SIGNUP -------------------- //
     $('html').on("keyup", "#signupEmail", function() {
+                
         $('#failed').empty();
         var user = $(this);
         var data = {email: $(this).val()};
@@ -466,10 +512,14 @@ function changeIngredient(ingredientName, store_name, URL, amount, unit, id) {
     console.log("Change from DB Failed ", this.error);
     };
 };
+    
 
 
 function getallRecipes(){
+    starterCounter = 0; soupCounter = 0; maincourseCounter = 0; dessertCounter = 0;
+    $('.recipe').remove();
     jQuery.each(recipeJSON, function() {
+        
             recipe = this;
             recipeElement = "<div class='recipe' data-name='" + recipe.name.toLowerCase()+"' data-type='"+ recipe.type.toLowerCase()+"'>"
                                 +"<div class='recipeHead'>"
@@ -489,39 +539,41 @@ function getallRecipes(){
                                 +"</div>"
                                 +"<div class='recipePreperation'>"+ recipe.preperation +"</div>"
                             +"</div>";
-
-                    if($(recipeElement).data('type') == 'starter'){
-                        $('#starter').append(recipeElement); 
-
-                    }else if($(recipeElement).data('type') == 'soups'){
-                        $('#soups').append(recipeElement); 
-
-                    }else if($(recipeElement).data('type') == 'maincourse'){
-                        $('#maincourse').append(recipeElement); 
-                    
-                    }else if($(recipeElement).data('type') == 'dessert'){
-                        $('#dessert').append(recipeElement); 
-                    }
-
+                            
+                            
+            if($(recipeElement).data('type') == 'starter'){
+                $('#starter').append(recipeElement); 
+                starterCounter++;
+                console.log('starter' + starterCounter);
+        
+            }else if($(recipeElement).data('type') == 'soups'){
+                $('#soups').append(recipeElement); 
+                soupCounter++;
+                console.log('soup' + soupCounter);
+        
+            }else if($(recipeElement).data('type') == 'maincourse'){
+                $('#maincourse').append(recipeElement); 
+                maincourseCounter++;
+            
+            }else if($(recipeElement).data('type') == 'dessert'){
+                $('#dessert').append(recipeElement); 
+                dessertCounter++;
+            }
+    
                    
            
     }); 
 
-    var coll = document.getElementsByClassName("collapsible");
-    var l;
+    
+    $('#starterCounter').text(starterCounter);
+    $('#soupCounter').text(soupCounter);
+    $('#maincourseCounter').text(maincourseCounter);
+    $('#dessertCounter').text(dessertCounter);
+    $('.recipe').css('display', 'flex');
 
-    for (l = 0; l < coll.length; l++) {
-    coll[l].addEventListener("click", function() {
-        console.log('CLICKED');
-        this.classList.toggle("open");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-        content.style.display = "none";
-        } else {
-        content.style.display = "block";
-        }
-    });
-    }
+
+ 
+
         
 };
 
@@ -543,7 +595,7 @@ function searchingRecipe(element){
 
 
 function getAvailableRecipes(recipeJSON){
-    
+    starterCounter = 0; soupCounter = 0; maincourseCounter = 0; dessertCounter = 0;
     dataBase.transaction(["ingredientList"], "readwrite").objectStore('ingredientList').getAll().onsuccess = function(e) {
         let result =  e.target.result; 
         console.log(result);
@@ -562,16 +614,13 @@ function getAvailableRecipes(recipeJSON){
                     let currentIngredient = ingredient.name;
                     let currentIngredientAmount = ingredient.amount; 
 
-                    
-
+            
                     if(currentIngredient == recipe.ingredient[i]['name'] && parseInt(currentIngredientAmount) >= parseInt(recipe.ingredient[i]['amount'])){
                         itemfound = true;
 
                         console.log(currentIngredient + ' ' + recipe.ingredient[i]['name']);
                         console.log(parseInt(currentIngredientAmount) + ' ' + parseInt(recipe.ingredient[i]['amount']));
-
-                    } 
-
+                    };
                 });
 
                 if(!itemfound) {
@@ -584,10 +633,9 @@ function getAvailableRecipes(recipeJSON){
             console.log(recipeFound);
 
             if(recipeFound){
-               
+                console.log('found');
                 $('.recipe[data-name="'+ recipe.name.toLowerCase()  +'"]').css('display','flex');
-                
-                
+                countAvaliableRecipes($('.recipe[data-name="'+ recipe.name.toLowerCase()  +'"]'));
             }
             
             if($('#selectedIngredientList').is(':empty')){
@@ -598,9 +646,46 @@ function getAvailableRecipes(recipeJSON){
             }
         
         });
+        $('#starterCounter').text(starterCounter);
+        $('#soupCounter').text(soupCounter);
+        $('#maincourseCounter').text(maincourseCounter);
+        $('#dessertCounter').text(dessertCounter);
+
+
                 
-    };
+    }; 
+    
+
+    
 }; 
+
+
+function countAvaliableRecipes(element){
+    console.log(element);
+
+    if($(element).data('type') == 'starter'){
+        starterCounter++;
+        
+        console.log('starter' + starterCounter);
+
+    }else if($(element).data('type') == 'soups'){
+        soupCounter++;
+        
+        console.log('soup' + soupCounter);
+
+    }else if($(element).data('type') == 'maincourse'){
+        maincourseCounter++;
+       
+    
+    }else if($(element).data('type') == 'dessert'){
+        dessertCounter++;
+       
+    }
+};
+    
+
+
+
 
 
        

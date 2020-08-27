@@ -123,41 +123,6 @@ button.modal_close:hover {
   -o-transition: -o-transform 600ms;
   transition: transform 600ms;
 }
-button.modal_close span,
-span:before,
-span:after {
-  background: #FFFFFF;
-  content: '';
-  cursor: pointer;
-  display: block;
-  height: 2px;
-  position: absolute;
-  width: 20px;
-}
-button.modal_close span:first-child {
-  background: none;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-button.modal_close span:before {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-button.modal_close span:after {
-  -webkit-transform: translateY(-2px) rotate(-45deg);
-  -moz-transform: translateY(-2px) rotate(-45deg);
-  -ms-transform: translateY(-2px) rotate(-45deg);
-  -o-transform: translateY(-2px) rotate(-45deg);
-  transform: translateY(-2px) rotate(-45deg);
-  top: 2px;
-}
 .indexH1 {
   margin-top: 20vh;
 }
@@ -552,6 +517,8 @@ label {
   text-align: left;
   outline: none;
   font-size: 3rem;
+  display: flex;
+  align-items: center;
 }
 .open,
 .collapsible:hover {
@@ -568,4 +535,19 @@ label {
   justify-content: center;
   color: black;
   font-weight: bold;
+}
+#starterCounter,
+#soupCounter,
+#maincourseCounter,
+#dessertCounter {
+  color: white;
+  border-radius: 50%;
+  background-color: red;
+  height: 4vh;
+  width: 4vh;
+  margin: 10px 15px 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
 }
