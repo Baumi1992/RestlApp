@@ -128,3 +128,7 @@ input[type=submit] {
 ul {
   list-style: none;
 }
+#logout,
+#settings {
+  margin-left: 3vh;
+}

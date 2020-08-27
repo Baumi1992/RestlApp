@@ -281,7 +281,7 @@ $(document).ready(function () {
     });
 
     $('html').on("click", "#editButton", function(event){
-        
+        $('#amountInput').val(1);
         event.preventDefault();
         if($('#amountInput').val() != ""){
             $(currentItem).find('.amount').text($('#amountInput').val()); 

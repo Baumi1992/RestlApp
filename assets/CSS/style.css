@@ -482,14 +482,6 @@ main > div {
   font-size: 1.75rem;
   font-weight: bold;
 }
-#settings,
-#about {
-  display: flex;
-  font-size: 4rem;
-  margin: 1vh 3vh;
-  color: #1a6917;
-  font-weight: bold;
-}
 .available {
   display: flex;
 }
